@@ -1,0 +1,1 @@
+https://github.com/IntershopCommunicationsAG/gitflow-version-gradle-plugin

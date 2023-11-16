@@ -38,12 +38,6 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-task printVersion {
-    group("deploy")
-    //dependsOn("build")
-    println "has property: " + version
-}
-
 build.dependsOn printVersion
 
 task copyProperties(type: Copy) {
