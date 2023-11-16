@@ -2,9 +2,10 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.5'
 	id 'io.spring.dependency-management' version '1.1.3'
+    id 'com.google.cloud.tools.jib' version '3.1.4'
 }
 
-group = 'com.example'
+group = 'com.kvwl'
 
 
 java {
@@ -13,6 +14,10 @@ java {
 
 jar {
     enabled = false
+}
+
+bootJar {
+    archiveBaseName = project.name.toLowerCase()
 }
 
 repositories {
@@ -57,6 +62,7 @@ tasks.register('delete', Delete) {
     group("IO")
     delete(file('/build/libs/gradle.properties'))
 }
+
 // führe printVersion for build aus
 build.dependsOn('printVersion')
 
@@ -89,3 +95,22 @@ packageDistribution.dependsOn('build')
 packageDistribution.dependsOn('copyForZip')
 packageDistribution.dependsOn('makeDirs')
 
+jib {
+    allowInsecureRegistries = true
+
+    from {
+        image = 'openjdk@sha256:528707081fdb9562eb819128a9f85ae7fe000e2fbaeaf9f87662e7b3f38cb7d8'
+    }
+    to {
+        tags = ['latest', project.version]
+        image = 'localhost:10001/repository/docker/backend:latest'
+        auth {
+            username = 'admin'
+            password = 'admin'
+        }
+    }
+    container {
+        jvmFlags = ['-Xms512m', '-Xmx1g']
+        ports = ['8080']
+    }
+}
