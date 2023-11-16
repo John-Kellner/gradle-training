@@ -20,6 +20,7 @@ repositories {
 }
 
 dependencies {
+    implementation project(":Shared")
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -45,3 +46,46 @@ task copyProperties(type: Copy) {
     include 'gradle.properties'
     into 'build/libs'
 }
+
+tasks.register('copy', Copy) {
+    group("IO")
+    from(file('gradle.properties'))
+    into('/build/libs')
+}
+
+tasks.register('delete', Delete) {
+    group("IO")
+    delete(file('/build/libs/gradle.properties'))
+}
+// führe printVersion for build aus
+build.dependsOn('printVersion')
+
+delete.dependsOn('copy')
+
+tasks.register('copyForZip', Copy) {
+    group("IO")
+    from(file('gradle.properties'))
+    into('/build/libs')
+
+    from(file('HELP.md'))
+    into('/build/libs')
+}
+
+tasks.register('packageDistribution', Zip) {
+    group('zip')
+
+    from 'build/libs' // Verzeichnis, das ins ZIP-Archiv eingeschlossen wird
+    include '*.*' // Datei(en), die eingeschlossen werden sollen
+
+    destinationDirectory = file('build/libs/dist')
+    archiveFileName = 'demo.zip'
+}
+
+tasks.register('makeDirs') {
+    file('build/libs/dist').mkdirs()
+}
+
+packageDistribution.dependsOn('build')
+packageDistribution.dependsOn('copyForZip')
+packageDistribution.dependsOn('makeDirs')
+
