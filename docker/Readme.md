@@ -11,3 +11,10 @@ docker-compose up -d
 ```
 
 ![Docker Image](img/docker.PNG)
+
+### Passwort von Nexus auslesen 
+```
+docker ps
+docker exec -it nexus-nexus-1 /bin/bash
+cd nexus 
+```
