@@ -5,7 +5,7 @@
 1. Starten in dem Ordner mit dem Skript
 2. Lt Konvention muss das docker-compose File docker-compose.yml heißen 
 
-
+Hochfahren 
 ```
 docker-compose up -d
 ```
@@ -32,4 +32,9 @@ cat /nexus-data/admin.password
 #### Bspw publish 
 ```
  .\gradlew :Lib:clean :Lib:build :Lib:publish
+```
+
+#### Removed container
+```
+docker-compose down -v 
 ```
