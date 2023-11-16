@@ -12,7 +12,7 @@ docker-compose up -d
 
 ![Docker Image](img/docker.PNG)
 
-###Nexus 
+### Nexus 
 ```
 localhost:8081
 ```
