@@ -104,10 +104,10 @@ jib {
     to {
         tags = ['latest', project.version]
         image = 'localhost:5000/backend:latest'
-        auth {
-            username = 'admin'
-            password = 'admin'
-        }
+//        auth {
+//            username = 'admin'
+//            password = 'admin'
+//        }
     }
     container {
         jvmFlags = ['-Xms512m', '-Xmx1g']
