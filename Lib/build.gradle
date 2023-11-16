@@ -5,16 +5,6 @@ plugins {
 
 repositories {
     mavenCentral()
-
-    maven {
-        name 'nexus'
-        url project.nexusUrl
-        credentials {
-            username project.nexusUser
-            password project.nexusPassword
-            allowInsecureProtocol = true
-        }
-    }
 }
 
 dependencies {
@@ -48,11 +38,18 @@ publishing {
             artifactId = "Lib"
             version = project.version
             from components.java
+        }
+    }
 
-
-//            artifact("build/libs/Lib-$version" + ".jar") {
-//                extension 'jar'
-//            }
+    repositories {
+        maven {
+            name 'nexus'
+            url project.nexusUrl
+            credentials {
+                username project.nexusUser
+                password project.nexusPassword
+                allowInsecureProtocol = true
+            }
         }
     }
 }
