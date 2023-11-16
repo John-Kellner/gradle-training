@@ -12,9 +12,24 @@ docker-compose up -d
 
 ![Docker Image](img/docker.PNG)
 
+###Nexus 
+```
+localhost:8081
+```
+
 ### Passwort von Nexus auslesen 
 ```
 docker ps
 docker exec -it nexus-nexus-1 /bin/bash
-cd nexus 
+cat /nexus-data/admin.password
+```
+
+### Password bspw:
+```
+5d9e9730-77df-46fe-9ea6-23fe2b997b31
+```
+
+#### Bspw publish 
+```
+ .\gradlew :Lib:clean :Lib:build :Lib:publish
 ```
