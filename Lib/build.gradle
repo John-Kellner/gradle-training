@@ -1,9 +1,20 @@
 plugins {
     id 'java-library'
+    id 'maven-publish'
 }
 
 repositories {
     mavenCentral()
+
+    maven {
+        name 'nexus'
+        url project.nexusUrl
+        credentials {
+            username project.nexusUser
+            password project.nexusPassword
+            allowInsecureProtocol = true
+        }
+    }
 }
 
 dependencies {
@@ -25,3 +36,19 @@ tasks.named('jar') {
                 'Description: our first API')
     }
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "com.api"
+            artifactId = "Lib"
+            version = project.version
+
+            artifact("build/libs/Lib-$version" + ".jar") {
+                extension 'jar'
+            }
+        }
+    }
+}
+
+
