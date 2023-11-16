@@ -99,11 +99,11 @@ jib {
     allowInsecureRegistries = true
 
     from {
-        image = 'openjdk@sha256:528707081fdb9562eb819128a9f85ae7fe000e2fbaeaf9f87662e7b3f38cb7d8'
+        image = 'openjdk:11-jre-slim'
     }
     to {
         tags = ['latest', project.version]
-        image = 'localhost:10001/repository/docker/backend:latest'
+        image = 'localhost:5000/backend:latest'
         auth {
             username = 'admin'
             password = 'admin'
