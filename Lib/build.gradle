@@ -37,16 +37,22 @@ tasks.named('jar') {
     }
 }
 
+publish {
+    outputs.upToDateWhen { false }
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
             groupId = "com.api"
             artifactId = "Lib"
             version = project.version
+            from components.java
 
-            artifact("build/libs/Lib-$version" + ".jar") {
-                extension 'jar'
-            }
+
+//            artifact("build/libs/Lib-$version" + ".jar") {
+//                extension 'jar'
+//            }
         }
     }
 }
