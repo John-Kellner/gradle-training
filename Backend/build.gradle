@@ -38,6 +38,37 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation("org.flywaydb:flyway-core:9.22.3")
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+//
+//    implementation("org.apache.poi:poi:5.2.4") {
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
+//        //exclude group: 'commons-codec', module: 'commons-codec'
+//    }
+//    constraints {
+//        implementation('commons-codec:commons-codec:1.16.0') {
+//            because 'previous versions have a bug impacting this application'
+//        }
+//    }
+//
+//    implementation("org.apache.poi:poi-ooxml:5.2.4") {
+//        exclude group: 'org.apache.logging.log4j', module: 'log4j-api'
+//    }
+//// alternative für Befehl oben
+//    implementation('commons-codec:commons-codec:[1.16.0, 1.16.1[!!1.17.0')
+//// erlaubt alle Versionen 1.16.0 bis 1.16.XXXXX
+//    implementation('commons-codec:commons-codec:1.16.+, 1.17.0!!')
+//
+//    implementation('commons-codec:commons-codec') {
+//        version {
+//            strictly '[1.16.0['
+//            prefer '1.16.0'
+//        }
+//    }
+//
+//
+//    implementation 'javax.validation:validation-api:2.0.1.Final'
+//    implementation 'javax.xml.ws:jaxws-api:2.3.1'
+//    implementation 'com.sun.xml.ws:jaxws-rt:4.0.2'
 }
 
 tasks.named('bootBuildImage') {
@@ -122,4 +153,8 @@ configurations.all {
         failOnVersionConflict()
         failOnDynamicVersions()
     }
+}
+
+dependencyLocking {
+    lockAllConfigurations()
 }
