@@ -25,8 +25,18 @@ repositories {
 }
 
 dependencies {
+    compileOnly("org.projectlombok:lombok")
+    compileOnly("org.projectlombok:lombok")
+
+    annotationProcessor("org.projectlombok:lombok")
+
     implementation project(":Shared")
+    implementation("org.apache.poi:poi:5.2.4")
+    implementation("org.apache.poi:poi-ooxml:5.2.4") {
+//        exclude(group = "org.apache.santuario")
+    }
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("org.flywaydb:flyway-core:9.22.3")
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -38,7 +48,6 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-build.dependsOn printVersion
 
 task copyProperties(type: Copy) {
     from 'src'
@@ -57,8 +66,6 @@ tasks.register('delete', Delete) {
     delete(file('/build/libs/gradle.properties'))
 }
 
-// führe printVersion for build aus
-build.dependsOn('printVersion')
 
 delete.dependsOn('copy')
 
@@ -106,5 +113,13 @@ jib {
     container {
         jvmFlags = ['-Xms512m', '-Xmx1g']
         ports = ['8080']
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // fail eagerly on version conflict (includes transitive dependencies)
+        failOnVersionConflict()
+        failOnDynamicVersions()
     }
 }

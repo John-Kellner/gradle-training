@@ -11,3 +11,13 @@ sonar {
         property "sonar.token", "sqp_77c6819b9a2aef4f3e11e9f9edda22852fda811f"
     }
 }
+
+
+configurations.all {
+    resolutionStrategy {
+        // fail eagerly on version conflict (includes transitive dependencies)
+        failOnVersionConflict()
+
+        failOnDynamicVersions()
+    }
+}
