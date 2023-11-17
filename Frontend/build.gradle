@@ -1,7 +1,25 @@
 plugins {
-	id 'java'
+	id 'java' //  anstatt Java
     id 'application'
+//    id 'com.moowork.node' version '1.5.3'
+
 }
+
+//node {
+//    version = '14.15.0'
+//}
+
+//task buildFrontend(type: NpmTask, dependsOn: 'npmInstall') {
+//    workingDir 'src'
+//    args = ['run', 'build']
+//}
+
+//task copyFrontendDist(type: Copy) {
+//    from 'src/dist/frontend' // Adjust the path based on your Angular output directory
+//    into project(':backend').file('src/main/resources/static')
+//}
+
+//tasks.build.dependsOn(buildFrontend, copyFrontendDist)
 
 group = 'com.example'
 
