@@ -1,5 +1,6 @@
 plugins {
     id 'java-gradle-plugin'
+    id 'maven-publish'
     id 'idea'
 }
 
@@ -16,3 +17,36 @@ java {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
+
+gradlePlugin {
+    plugins {
+        OurApiPlugin {
+            id = 'com.our.own.plugin.OurApiPlugin'
+            implementationClass = 'com.our.own.plugin.OurApiPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.demo'
+            artifactId = project.name
+            version = project.version
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name 'nexus'
+            url project.nexusUrl
+            credentials {
+                username project.nexusUser
+                password project.nexusPassword
+                allowInsecureProtocol = true
+            }
+        }
+    }
+}
+

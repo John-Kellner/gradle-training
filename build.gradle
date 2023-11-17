@@ -1,6 +1,5 @@
 plugins {
     id "org.sonarqube" version "4.4.1.3373"
-
 }
 
 sonar {
@@ -12,7 +11,6 @@ sonar {
     }
 }
 
-
 configurations.all {
     resolutionStrategy {
         // fail eagerly on version conflict (includes transitive dependencies)
@@ -21,3 +19,34 @@ configurations.all {
         failOnDynamicVersions()
     }
 }
+
+//Für alle Projekte Repros definiert
+allprojects {
+//    apply plugin: 'maven-publish'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        maven {
+            url("http://localhost:8081/repository/gradle-repro/")
+            allowInsecureProtocol = true
+        }
+    }
+}
+
+//Konfigurationen nur für Alle Submodule
+subprojects {
+
+}
+
+//Konfiguration nur für Backend
+project(":Backend"){
+
+}
+
+//include 'Plugin'
+
+//subprojects {
+//    apply  plugin: com.our.own.plugin.OurApiPlugin
+//}

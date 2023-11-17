@@ -3,10 +3,10 @@ plugins {
 	id 'org.springframework.boot' version '3.1.5'
 	id 'io.spring.dependency-management' version '1.1.3'
     id 'com.google.cloud.tools.jib' version '3.1.4'
+    id 'com.our.own.plugin.OurApiPlugin' version '2.0.2'
 }
 
 group = 'com.kvwl'
-
 
 java {
 	sourceCompatibility = '17'
@@ -20,21 +20,28 @@ bootJar {
     archiveBaseName = project.name.toLowerCase()
 }
 
-repositories {
-	mavenCentral()
-}
+//repositories {
+//    mavenLocal()
+//	mavenCentral()
+//
+//    maven {
+//        url("http://localhost:8081/repository/gradle-repro/")
+//        allowInsecureProtocol = true
+//    }
+//}
 
 dependencies {
     compileOnly("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
 
-    annotationProcessor("org.projectlombok:lombok")
 
     implementation project(":Shared")
+    annotationProcessor("org.projectlombok:lombok")
     implementation("org.apache.poi:poi:5.2.4")
     implementation("org.apache.poi:poi-ooxml:5.2.4") {
 //        exclude(group = "org.apache.santuario")
     }
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation("org.flywaydb:flyway-core:9.22.3")
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
