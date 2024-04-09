@@ -2,9 +2,15 @@ version: "2"
 
 services:
   biene:
-    image: localhost:5000/backend:latest
+    image: localhost:5000/backend:0.0.3
     ports: [
       "8090:8080"
+    ]
+
+  biene2:
+    image: localhost:5000/backend:0.0.1
+    ports: [
+      "8091:8080"
     ]
 
 volumes:
