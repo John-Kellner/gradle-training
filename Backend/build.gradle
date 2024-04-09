@@ -99,7 +99,7 @@ jib {
     allowInsecureRegistries = true
 
     from {
-        image = 'openjdk:11-jre-slim'
+        image = 'openjdk:17'
     }
     to {
         tags = ['latest', project.version]
