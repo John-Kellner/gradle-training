@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  biene:
+    image: localhost:5000/backend:latest
+    ports: [
+      "8090:8080"
+    ]
+
+volumes:
+  nexus-data: {}
