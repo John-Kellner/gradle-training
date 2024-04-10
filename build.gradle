@@ -5,8 +5,9 @@ plugins {
 sonar {
     properties {
         property "sonar.projectKey", "Gradle"
+        property "sonar.projectName", "Biene"
         property "sonar.organization", "myOrganization"
         property "sonar.host.url", "http://localhost:9000"
-        property "sonar.token", "sqp_77c6819b9a2aef4f3e11e9f9edda22852fda811f"
+        property "sonar.token", "sqp_b39ed972c18abe93119b46e8bbf23fd374c7e993"
     }
 }
