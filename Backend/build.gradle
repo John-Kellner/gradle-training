@@ -9,7 +9,9 @@ group = 'com.kvwl'
 
 
 java {
-	sourceCompatibility = '17'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 jar {
@@ -99,7 +101,7 @@ jib {
     allowInsecureRegistries = true
 
     from {
-        image = 'openjdk:17'
+        image = 'openjdk:21'
     }
     to {
         tags = ['latest', project.version]
